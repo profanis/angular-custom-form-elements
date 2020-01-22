@@ -1,5 +1,5 @@
-import { Component, forwardRef, Input } from '@angular/core';
-import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
+import { Component, forwardRef, Input, Self, OnInit } from '@angular/core';
+import { NG_VALUE_ACCESSOR, ControlValueAccessor, NgControl, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-my-text-input',
@@ -14,12 +14,20 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
   ],
 })
 export class MyTextInputComponent implements ControlValueAccessor {
+
   @Input() label: string;
   @Input() type: 'text' | 'password' | 'email' = 'text';
   @Input() placeholder: string;
+  @Input() control: FormControl;
   field: string;
 
   id = Math.random();
+  errors = {
+    minlength: 'Min length error',
+    required: 'Field is required',
+    email: 'Email is invalid'
+  };
+
 
   // Function to call when change
   onChange = (value: any) => {}
@@ -35,6 +43,21 @@ export class MyTextInputComponent implements ControlValueAccessor {
   }
 
   setDisabledState?(isDisabled: boolean): void {
+  }
+
+  getErrors(): { type; message; }[] {
+
+    if (!this.control.errors) {
+      return;
+    }
+
+    return Object.keys(this.control.errors).map(errorType => {
+        return {
+          type: errorType,
+          message: this.errors[errorType]
+        };
+      }
+    );
   }
 
 }

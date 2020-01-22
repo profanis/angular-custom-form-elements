@@ -4,46 +4,35 @@
     <!-- First Name -->
     <app-my-text-input  [label]="'First Name'"
                         [placeholder]="'e.g. John'"
-                        formControlName="firstName">
+                        formControlName="firstName"
+                        [control]="myForm.get('firstName')">
     </app-my-text-input>
     <!-- /First Name -->
 
     <!-- Last Name -->
-    <div class="form-group">
-      <label for="inputLname1">Last Name</label>
-      <input  type="text"
-              class="form-control"
-              id="inputLname1"
-              placeholder="e.g. Doe"
-              formControlName="lastName">
-      <small class="text-danger" *ngIf="myForm.get('lastName').dirty && myForm.get('lastName').errors?.required">Field is required</small>
-      <small class="text-danger" *ngIf="myForm.get('lastName').dirty && myForm.get('lastName').errors?.minlength">Min length error</small>
-    </div>
+    <app-my-text-input  [label]="'Last Name'"
+                        [placeholder]="'e.g. Doe'"
+                        formControlName="lastName"
+                        [control]="myForm.get('lastName')">
+    </app-my-text-input>
     <!-- /Last Name -->
 
     <!-- Email Address -->
-    <div class="form-group">
-      <label for="inputEmail1">Email address</label>
-      <input  type="email"
-              class="form-control"
-              id="inputEmail1"
-              placeholder="e.g. john@doe.com"
-              formControlName="email">
-      <small class="text-danger" *ngIf="myForm.get('email').dirty && myForm.get('email').errors?.required">Field is required</small>
-      <small class="text-danger" *ngIf="myForm.get('email').dirty && myForm.get('email').errors?.email">Email is invalid</small>
-    </div>
+    <app-my-text-input  [label]="'Email address'"
+                        [placeholder]="'e.g. john@doe.com'"
+                        formControlName="email"
+                        [control]="myForm.get('email')"
+                        [type]="'email'">
+    </app-my-text-input>
     <!-- /Email Address -->
 
     <!-- Password -->
-    <div class="form-group">
-      <label for="inputPassword1">Password</label>
-      <input  type="password"
-              class="form-control"
-              id="inputPassword1"
-              placeholder="e.g. **** :) "
-              formControlName="password">
-      <small class="text-danger" *ngIf="myForm.get('password').dirty &&  myForm.get('password').invalid">Field is required</small>
-    </div>
+    <app-my-text-input  [label]="'Password'"
+                        [placeholder]="'e.g. **** :) '"
+                        formControlName="password"
+                        [control]="myForm.get('password')"
+                        [type]="'password'">
+    </app-my-text-input>
     <!-- /Password -->
 
     <button type="submit" class="btn btn-primary" [disabled]="myForm.invalid">Submit</button>

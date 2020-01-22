@@ -5,6 +5,13 @@
           id="{{ id }}"
           placeholder="{{ placeholder }}"
           [ngModel]="field"
-          (ngModelChange)="onChange($event)">
+          (ngModelChange)="onChange($event)"
+          #fieldModel="ngModel">
+
+  <div *ngIf="fieldModel.dirty">
+    <div class="text-danger" *ngFor="let error of getErrors()">
+      {{error.message}}
+    </div>
+  </div>
 </div>
 
