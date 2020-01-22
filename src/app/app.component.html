@@ -2,16 +2,10 @@
   <form [formGroup]="myForm" autocomplete="off" novalidate>
 
     <!-- First Name -->
-    <div class="form-group">
-      <label for="inputFname1">First Name</label>
-      <input  type="text"
-              class="form-control"
-              id="inputFname1"
-              placeholder="e.g. John"
-              formControlName="firstName">
-      <small class="text-danger" *ngIf="myForm.get('firstName').dirty && myForm.get('firstName').errors?.required">Field is required</small>
-      <small class="text-danger" *ngIf="myForm.get('firstName').dirty && myForm.get('firstName').errors?.minlength">Min length error</small>
-    </div>
+    <app-my-text-input  [label]="'First Name'"
+                        [placeholder]="'e.g. John'"
+                        formControlName="firstName">
+    </app-my-text-input>
     <!-- /First Name -->
 
     <!-- Last Name -->
